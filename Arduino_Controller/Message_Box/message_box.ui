@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>391</width>
+    <height>184</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QFrame" name="Window">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>371</width>
+     <height>161</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame{
+	border-radius: 7px;
+	background-color: #7D5991;
+}
+
+QScrollBar:horizontal{
+	border: none;
+    background: rgb(45, 45, 68);
+	margin: 0px 0 0px 0;
+	border-radius: 0px;
+ }
+
+QScrollBar::handle:horizontal{	
+	background-color: rgb(80, 80, 122);
+	min-width: 30px;
+	border-radius: 7px;
+}
+QScrollBar::handle:horizontal:hover{	
+	background-color: rgb(255, 0, 127);
+}
+QScrollBar::handle:horizontal:pressed{	
+	background-color: rgb(185, 0, 92);
+}
+
+QScrollBar::sub-line:horizontal{
+	border: none;
+	background-color: rgb(59, 59, 90);
+	width: 15px;
+	border-top-right-radius: 7px;
+	border-bottom-right-radius: 7px;
+	subcontrol-position: left;
+	subcontrol-origin: margin;
+}
+QScrollBar::sub-line:horizontal:hover{	
+	background-color: rgb(255, 0, 127);
+}
+QScrollBar::sub-line:horizontal:pressed{	
+	background-color: rgb(185, 0, 92);
+}
+
+QScrollBar::add-line:horizontal{
+	border: none;
+	background-color: rgb(59, 59, 90);
+	width: 15px;
+	border-top-left-radius: 7px;
+	border-bottom-left-radius: 7px;
+	subcontrol-position: right;
+	subcontrol-origin: margin;
+}
+QScrollBar::add-line:horizontal:hover {	
+	background-color: rgb(255, 0, 127);
+}
+QScrollBar::add-line:horizontal:pressed {	
+	background-color: rgb(185, 0, 92);
+}
+
+QScrollBar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal{
+	background: none;
+}
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal{
+	background: none;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QFrame" name="WindowFrame">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>371</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame{
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	background-color: #946FA6;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="CloseWindowButton">
+     <property name="geometry">
+      <rect>
+       <x>331</x>
+       <y>0</y>
+       <width>41</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+	color: white;
+	border: none;
+	border-top-right-radius: 7px;
+	background-color: #946FA6;
+}
+
+QPushButton:hover{
+	background-color: #8E68A2;
+}
+
+QPushButton:pressed{
+	color: #EA2F4E;
+}</string>
+     </property>
+     <property name="text">
+      <string>X</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="MinimizeWindowButton">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>0</y>
+       <width>41</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+	color: white;
+	border: none;
+	border-top-right-radius: 7px;
+	background-color: #946FA6;
+}
+
+QPushButton:hover{
+	background-color: #8E68A2;
+}
+
+QPushButton:pressed{
+	color: #EA2F4E;
+}</string>
+     </property>
+     <property name="text">
+      <string>_</string>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPlainTextEdit" name="PlainTextEdit">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>331</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	color: white;
+	border-radius: 6px;
+	background-color: #946FA6;
+}
+
+QScrollBar:horizontal {
+	border: none;
+    background: rgb(56, 56, 85);
+}</string>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustIgnored</enum>
+    </property>
+    <property name="undoRedoEnabled">
+     <bool>true</bool>
+    </property>
+    <property name="lineWrapMode">
+     <enum>QPlainTextEdit::NoWrap</enum>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="plainText">
+     <string/>
+    </property>
+    <property name="centerOnScroll">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

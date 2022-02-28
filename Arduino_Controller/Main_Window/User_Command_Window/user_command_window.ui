@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>361</width>
+    <height>241</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QFrame" name="Window">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>341</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame{
+	border-radius: 7px;
+	background-color: #7D5991;
+}
+
+QLabel{
+	color: white;
+}
+
+QLineEdit{
+	border-radius: 12px;
+}
+
+QTextEdit{
+	background-color: #946FA6;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QFrame" name="WindowFrame">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>341</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame{
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	background-color: #946FA6;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="CloseWindowButton">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>0</y>
+       <width>41</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+	color: white;
+	border: none;
+	border-top-right-radius: 7px;
+	background-color: #946FA6;
+}
+
+QPushButton:hover{
+	background-color: #8E68A2;
+}
+
+QPushButton:pressed{
+	color: #EA2F4E;
+}</string>
+     </property>
+     <property name="text">
+      <string>X</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="MinimizeWindowButton">
+     <property name="geometry">
+      <rect>
+       <x>259</x>
+       <y>0</y>
+       <width>41</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+	color: white;
+	border: none;
+	border-top-right-radius: 7px;
+	background-color: #946FA6;
+}
+
+QPushButton:hover{
+	background-color: #8E68A2;
+}
+
+QPushButton:pressed{
+	color: #EA2F4E;
+}</string>
+     </property>
+     <property name="text">
+      <string>_</string>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="Button">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>160</y>
+      <width>301</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	color: white;
+	border-radius: 12px;
+	background-color: #946FA6;
+}
+
+QPushButton:hover{
+	background-color: #9A76AB;
+}
+
+QPushButton:pressed{
+	background-color: #8E68A2;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="CommandNameLineEdit">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>301</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Придумайте имя команде</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>130</y>
+      <width>221</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Выберите Arduino порт:</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>130</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame{
+	border-radius: 0px;
+	background-color: white;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QComboBox" name="ArduinoPortsListComboBox">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>81</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>13</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <item>
+      <property name="text">
+       <string>D0</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>D1</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>D2</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>D3</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>D4</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>D5</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>D6</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>D7</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>D8</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>D9</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>D10</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>D11</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>D12</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>D13</string>
+      </property>
+     </item>
+    </widget>
+   </widget>
+   <widget class="QLineEdit" name="CommandLineEdit">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>301</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>WhatsThisCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Для того, чтобы открылся сайт, введите: https://{&lt;/span&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#ff0000;&quot;&gt;САЙТ&lt;/span&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Для того, чтобы открылся файл/приложение, введите путь к нему&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Введите команду</string>
+    </property>
+   </widget>
+   <zorder>frame</zorder>
+   <zorder>WindowFrame</zorder>
+   <zorder>Button</zorder>
+   <zorder>CommandNameLineEdit</zorder>
+   <zorder>label</zorder>
+   <zorder>CommandLineEdit</zorder>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
