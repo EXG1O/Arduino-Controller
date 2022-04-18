@@ -19,16 +19,11 @@ import time
 import os
 
 # Главное окно
-class MainWindow(QtWidgets.QMainWindow):
-	def __init__(self, parent = None):
-		QtWidgets.QWidget.__init__(self, parent)
+class MainWindow(Method.CreateMainWindow):
+	def __init__(self, parent=None):
+		super().__init__(parent)
 		self.ui = main_window.Ui_MainWindow()
 		self.ui.setupUi(self)
-
-		# Отключаем стандартные границы окна программы
-		self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
-		self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
-		self.center()
 
 		# Запуск всех нужных потоков
 		self.update_ports_combobox_theard = UpdatePortsComboBox()
@@ -49,26 +44,6 @@ class MainWindow(QtWidgets.QMainWindow):
 		self.ui.CloseWindowButton.clicked.connect(lambda: self.close())
 		self.ui.MinimizeWindowButton.clicked.connect(lambda: self.showMinimized())
 
-	# Перетаскивание безрамочного окна
-	# ==================================================================
-	def center(self):
-		qr = self.frameGeometry()
-		cp = QtWidgets.QDesktopWidget().availableGeometry().center()
-		qr.moveCenter(cp)
-		self.move(qr.topLeft())
-
-	def mousePressEvent(self, event):
-		self.oldPos = event.globalPos()
-
-	def mouseMoveEvent(self, event):
-		try:
-			delta = QtCore.QPoint(event.globalPos() - self.oldPos)
-			self.move(self.x() + delta.x(), self.y() + delta.y())
-			self.oldPos = event.globalPos()
-		except AttributeError:
-			pass
-	# ==================================================================
-
 	# Декораторы
 	# ==================================================================
 	def get_select_item(func):
@@ -77,7 +52,7 @@ class MainWindow(QtWidgets.QMainWindow):
 			if select_item != []:
 				func(self, select_item[0])
 			else:
-				MessageBox(text = 'Вы не выбрали команду в списке команд, которую вы хотите редактировать!', button_1 = 'Щас исправлю...')
+				MessageBox(text='Вы не выбрали команду в списке команд, которую вы хотите редактировать!', button_1='Щас исправлю...')
 		return wrapper
 	# ==================================================================
 
@@ -88,14 +63,14 @@ class MainWindow(QtWidgets.QMainWindow):
 		self.user_command_window.show()
 
 	@get_select_item
-	def edit_user_command_button(self, select_item = None):
-		self.edit_user_command_button = UserCommandPanelWindow(self.ui.EditUserCommandButton.text(), select_item[0])
+	def edit_user_command_button(self, select_item=None):
+		self.edit_user_command_button = UserCommandPanelWindow(self.ui.EditUserCommandButton.text(), select_item)
 		self.edit_user_command_button.show()
 
 	@get_select_item
-	def remove_user_commans_button(self, select_item = None):
-		message_box = MessageBox(text  = f'Вы точно хотите удалить команду "{select_item[0].text()}"?', button_1 = 'Да', button_2 = 'Нет')
-		message_box.message_box.signalButton.connect(lambda text: self.remove_user_command(message_box.message_box, text, select_item[0]))
+	def remove_user_commans_button(self, select_item=None):
+		message_box = MessageBox(text=f'Вы точно хотите удалить команду "{select_item.text()}"?', button_1='Да', button_2='Нет')
+		message_box.message_box.signalButton.connect(lambda text: self.remove_user_command(message_box.message_box, text, select_item))
 
 	def on_or_off_program_button(self):
 		on_or_off_program_button_text = self.ui.OnOrOffProgramButton.text()
@@ -104,7 +79,7 @@ class MainWindow(QtWidgets.QMainWindow):
 			if usb_port != '':
 				self.on_program()
 			else:
-				MessageBox(text = 'Вы не выбрали USB порт из списка USB портов, к которому подключена ваша Arduino плата!', button_1 = 'Щас исправлю...')
+				MessageBox(text='Вы не выбрали USB порт из списка USB портов, к которому подключена ваша Arduino плата!', button_1='Щас исправлю...')
 		else:
 			self.off_program()
 	# ==================================================================
@@ -126,9 +101,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
 			user_commands.pop(user_command_value - 1)
 			with open('User-Commands.json', 'w') as file:
-				file.write(json.dumps(user_commands, ensure_ascii = False, indent = 2))
+				file.write(json.dumps(user_commands, ensure_ascii=False, indent=2))
 
-			MessageBox(text = f'Вы успешно удалили команду "{user_command_name}".', button_1 = 'Окей')
+			MessageBox(text=f'Вы успешно удалили команду "{user_command_name}".', button_1='Окей')
 
 	def on_program(self):
 		self.ui.OnOrOffProgramButton.setText('Выключить программу')

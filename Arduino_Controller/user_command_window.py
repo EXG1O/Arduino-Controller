@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# PyQt5
-from PyQt5 import QtCore, QtWidgets
-
 # GUI
 import Main_Window.User_Command_Window.user_command_window as user_command_window
 from message_box import MessageBox
@@ -12,17 +9,11 @@ import methods as Method
 import json
 
 # Окно для пользовадский команд
-class UserCommandPanelWindow(QtWidgets.QMainWindow):
-	def __init__(self, button_text, item = None, parent = None):
-		super().__init__(parent, QtCore.Qt.Window)
+class UserCommandPanelWindow(Method.CreateFormWindow):
+	def __init__(self, button_text, item=None, parent=None):
+		super().__init__(parent)
 		self.ui = user_command_window.Ui_Form()
 		self.ui.setupUi(self)
-		self.setWindowModality(2)
-
-		# Отключаем стандартные границы окна программы
-		self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
-		self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
-		self.center()
 
 		# Все нужные переменные
 		self.button_text = button_text
@@ -50,26 +41,6 @@ class UserCommandPanelWindow(QtWidgets.QMainWindow):
 		# Обработчики кнопок с панели
 		self.ui.CloseWindowButton.clicked.connect(lambda: self.close())
 		self.ui.MinimizeWindowButton.clicked.connect(lambda: self.showMinimized())
-
-	# Перетаскивание безрамочного окна
-	# ==================================================================
-	def center(self):
-		qr = self.frameGeometry()
-		cp = QtWidgets.QDesktopWidget().availableGeometry().center()
-		qr.moveCenter(cp)
-		self.move(qr.topLeft())
-
-	def mousePressEvent(self, event):
-		self.oldPos = event.globalPos()
-
-	def mouseMoveEvent(self, event):
-		try:
-			delta = QtCore.QPoint(event.globalPos() - self.oldPos)
-			self.move(self.x() + delta.x(), self.y() + delta.y())
-			self.oldPos = event.globalPos()
-		except AttributeError:
-			pass
-	# ==================================================================
 
 	# Декораторы
 	# ==================================================================
@@ -103,10 +74,10 @@ class UserCommandPanelWindow(QtWidgets.QMainWindow):
 	# ==================================================================
 	def button_button(self):
 		if self.button_text == 'Добавить команду':
-			message_box = MessageBox(text = 'Вы точно хотите добавить новую команду?', button_1 = 'Да', button_2 = 'Нет')
+			message_box = MessageBox(text='Вы точно хотите добавить новую команду?', button_1='Да', button_2='Нет')
 			message_box.message_box.signalButton.connect(lambda text: self.add_new_user_command(message_box.message_box, text))
 		elif self.button_text == 'Редактировать команду':
-			message_box = MessageBox(text = f'Вы точно хотите редактировать данную команду?', button_1 = 'Да', button_2 = 'Нет')
+			message_box = MessageBox(text=f'Вы точно хотите редактировать данную команду?', button_1='Да', button_2='Нет')
 			message_box.message_box.signalButton.connect(lambda text: self.edit_user_command(message_box.message_box, text))
 	# ==================================================================
 
@@ -114,31 +85,35 @@ class UserCommandPanelWindow(QtWidgets.QMainWindow):
 	# ==================================================================
 	@check_user_command
 	def add_new_user_command(self, message_box, user_answer):
-		self.user_commands.append(
-			{
-				'Command_Name': self.ui.CommandNameLineEdit.text(),
-				'Command': self.ui.CommandLineEdit.text(),
-				'Arduino_Port': self.ui.ArduinoPortsListComboBox.currentText()
-			}
-		)
-		with open('User-Commands.json', 'w') as file:
-			file.write(json.dumps(self.user_commands, ensure_ascii = False, indent = 2))
+		message_box.close()
+		if user_answer == 'Да':
+			self.user_commands.append(
+				{
+					'Command_Name': self.ui.CommandNameLineEdit.text(),
+					'Command': self.ui.CommandLineEdit.text(),
+					'Arduino_Port': self.ui.ArduinoPortsListComboBox.currentText()
+				}
+			)
+			with open('User-Commands.json', 'w') as file:
+				file.write(json.dumps(self.user_commands, ensure_ascii=False, indent=2))
 
-		self.close()
-		MessageBox(text = 'Вы успешно добавили новую команду.', button_1 = 'Окей')
+			self.close()
+			MessageBox(text='Вы успешно добавили новую команду.', button_1='Окей')
 
 	@check_user_command
 	def edit_user_command(self, message_box, user_answer):
-		self.user_commands[self.user_command_value].update(
-			{
-				'Command_Name': self.ui.CommandNameLineEdit.text(),
-				'Command': self.ui.CommandLineEdit.text(),
-				'Arduino_Port': self.ui.ArduinoPortsListComboBox.currentText()
-			}
-		)
-		with open('User-Commands.json', 'w') as file:
-			file.write(json.dumps(self.user_commands, ensure_ascii = False, indent = 2))
+		message_box.close()
+		if user_answer == 'Да':
+			self.user_commands[self.user_command_value].update(
+				{
+					'Command_Name': self.ui.CommandNameLineEdit.text(),
+					'Command': self.ui.CommandLineEdit.text(),
+					'Arduino_Port': self.ui.ArduinoPortsListComboBox.currentText()
+				}
+			)
+			with open('User-Commands.json', 'w') as file:
+				file.write(json.dumps(self.user_commands, ensure_ascii=False, indent=2))
 
-		self.close()
-		MessageBox(text = 'Вы успешно редактировали команду.', button_1 = 'Окей')
+			self.close()
+			MessageBox(text='Вы успешно редактировали команду.', button_1='Окей')
 	# ==================================================================

@@ -15,7 +15,7 @@ import sys
 # ==================================================================
 if Method.find_file('User-Commands.json') == False:
 	with open('User-Commands.json', 'a') as file:
-		file.write(json.dumps([], ensure_ascii = False, indent = 2))
+		file.write(json.dumps([], ensure_ascii=False, indent=2))
 # ==================================================================
 
 # Запуск программы
